@@ -1,0 +1,51 @@
+.categorySlider :global(.swiper-button-prev:after, ) {
+    padding: 18px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1px;
+    height: 1px;
+    background-color: #0007;
+    transition: all 350ms;
+    z-index: 20;
+}
+.categorySlider :global(.swiper-button-next:after) {
+    padding: 18px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1px;
+    height: 1px;
+    background-color: #0007;
+    transition: all 350ms;
+    z-index: 20;
+}
+.categorySlider :global(.swiper-button-next) {
+    transition: all 300ms;
+}
+.categorySlider :global(.swiper-button-prev) {
+    transition: all 300ms;
+}
+.categorySlider :global(.swiper-button-next:hover.swiper-button-next:after) {
+    background-color: transparent;
+    scale: 1.1;
+    transform: translateX(4px);
+}
+.categorySlider :global(.swiper-button-prev:hover.swiper-button-prev:after) {
+    background-color: transparent;
+    scale: 1.1;
+    transform: translateX(-4px);
+}
+
+body:has(.categorySlider .swiper-button-next:hover)
+    .categorySlider
+    .right-swiper {
+    opacity: 1;
+}
+body:has(.categorySlider .swiper-button-prev:hover)
+    .categorySlider
+    .left-swiper {
+    opacity: 1;
+}
