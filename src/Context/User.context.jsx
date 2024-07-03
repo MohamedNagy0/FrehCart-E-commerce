@@ -51,7 +51,7 @@ export default function UserProvider({ children }) {
         localStorage.removeItem("token");
         setTimeout(() => {
             toast.dismiss(toastId);
-            window.location.href = "https://e-commerce-psi-ashen.vercel.app/";
+            window.location.href = "https://e-commerce-orpin-rho.vercel.app/";
             setToken(null);
             toast(<span className="text-darkPrimary ">Logged out</span>, {
                 duration: 2000,
