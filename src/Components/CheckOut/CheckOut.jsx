@@ -67,7 +67,7 @@ export default function CheckOut({ totalPrice }) {
         try {
             const options = {
                 method: "POST",
-                url: `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartProducts.data._id}?url=https://mohamednagy0.github.io/allorders`,
+                url: `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartProducts.data._id}?url=/allorders`,
                 data: {
                     shippingAddress: {
                         details,
