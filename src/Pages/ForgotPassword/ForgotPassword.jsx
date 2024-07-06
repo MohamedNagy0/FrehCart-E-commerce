@@ -1,11 +1,48 @@
 import { Formik, useFormik } from "formik";
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-import { userContext } from "../../Context/User.context";
+import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function ForgotPassword() {
-    const { ForgotPassword } = useContext(userContext);
+    let navigate = useNavigate();
+
+    function clearInputs() {
+        Formik.values.email = "";
+    }
+
+    async function ForgotPassword(values) {
+        let toastId;
+
+        try {
+            const options = {
+                method: "POST",
+                url: "https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords",
+                data: values,
+            };
+            toastId = toast.loading("Waiting...");
+
+            const { data } = await axios.request(options);
+            if (data.statusMsg == "success") {
+                localStorage.setItem("userResetEmail", values.email);
+                toast.dismiss(toastId);
+                toast(data.message, {
+                    duration: 2000,
+                    position: "top-center",
+                    icon: (
+                        <span className="bg-primary size-1 p-3 rounded-full flex justify-center items-center">
+                            <i className="fa-solid fa-check text-white"></i>
+                        </span>
+                    ),
+                });
+                navigate("/auth/verifyCode");
+            }
+        } catch (error) {
+            clearInputs();
+            toast.dismiss(toastId);
+            toast.error(error.response.data.message);
+        }
+    }
 
     const formik = useFormik({
         initialValues: {
