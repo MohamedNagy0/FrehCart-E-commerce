@@ -36,7 +36,8 @@ export default function UserProvider({ children }) {
                     ),
                 });
 
-                window.location.href = "http://localhost:5173/auth/verifyCode";
+                window.location.href =
+                    "https://e-commerce-orpin-rho.vercel.app/auth/verifyCode";
             }
         } catch (error) {
             clearInputs();
