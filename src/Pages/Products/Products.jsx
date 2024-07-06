@@ -41,6 +41,10 @@ export default function Products() {
         item.title.toLowerCase().includes(searchInputValue.toLowerCase())
     );
 
+    const closeFilter = () => {
+        setShowFilterModal(false);
+    };
+
     useEffect(() => {
         getAllProducts();
     }, [allProductsUrl]);
@@ -58,31 +62,28 @@ export default function Products() {
                 <>
                     (
                     <aside
-                        onClick={(e) => {
-                            if (e.target == document.querySelector(".filter")) {
-                                setShowFilterModal(!showFilterModal);
-                            }
-                        }}
                         className={`${
-                            showFilterModal ? "translate-x-0" : ""
-                        } bg-white -translate-x-full  filter duration-500 flex shadow-md rounded-lg flex-col gap-3 p-4 fixed top-0 bottom-0 left-0 max-xs:w-[250px] w-[350px] h-full z-50`}
+                            showFilterModal ? "translate-x-0 opacity-100" : ""
+                        } bg-white -translate-x-full opacity-0  duration-500 flex shadow-md rounded-lg flex-col gap-3 p-4 fixed top-0 bottom-0 left-0 max-xs:w-[250px] w-[350px] h-full z-50`}
                     >
-                        <header className="flex items-center justify-between">
+                        <header className="flex  items-center justify-between">
                             <h2 className="text-xl font-bold  uppercase">
                                 <span className="relative after:bg-darkPrimary after:absolute after:top-full after:left-0 after:w-full after:h-[1px]">
                                     Sort
                                 </span>
                             </h2>
-                            <i
+                            <div
                                 onClick={() => {
                                     setShowFilterModal(!showFilterModal);
                                 }}
-                                className="fa-solid fa-xmark cursor-pointer"
-                            ></i>
+                                className="size-1 p-3  hover:border-primary cursor-pointer  border duration-500 border-white flex justify-center items-center rounded-full "
+                            >
+                                <i className="fa-solid text-primary fa-xmark"></i>
+                            </div>
                         </header>
 
                         <div>
-                            <h2 className="font-semibold">Price :</h2>
+                            <h2 className="font-semibold ">Price :</h2>
                             <form>
                                 <div
                                     onClick={() => {
@@ -125,7 +126,7 @@ export default function Products() {
                             </form>
                         </div>
 
-                        <h2 className="text-xl font-bold  uppercase">
+                        <h2 className="text-xl font-bold uppercase">
                             <span className="relative after:bg-darkPrimary after:absolute after:top-full after:left-0 after:w-full after:h-[1px]">
                                 Filter
                             </span>
@@ -381,7 +382,11 @@ export default function Products() {
                         <div className="max-xs:w-full">
                             <BackButton />
                         </div>
-                        <div className="relative max-xs:flex-grow max-xs:order-first ">
+
+                        <div
+                            onClick={() => closeFilter()}
+                            className="relative max-xs:flex-grow max-xs:order-first "
+                        >
                             <label
                                 htmlFor="search"
                                 className="absolute top-1/2 -translate-y-1/2 right-[15px]"
@@ -400,6 +405,7 @@ export default function Products() {
                                 }}
                             />
                         </div>
+
                         <div
                             onClick={() => {
                                 setShowFilterModal(!showFilterModal);
@@ -408,18 +414,24 @@ export default function Products() {
                         >
                             <img
                                 src={filterImg}
-                                className="size-full"
+                                className="size-full active:scale-90 duration-150"
                                 alt="filter img"
                             />
                         </div>
                     </nav>
-                    <section className="wrapper mb-28 max-sm:mb-40  grid grid-cols-12 gap-5 max-md:px-16">
+                    <section
+                        onClick={() => closeFilter()}
+                        className="wrapper mb-28 max-sm:mb-40  grid grid-cols-12 gap-5 max-md:px-16"
+                    >
                         {filterData.map((obj) => (
                             <ProductCard products={obj} key={obj.id} />
                         ))}
                     </section>
                     {filterData.length != 0 ? (
-                        <div className="absolute  max-xs:flex-col bottom-0 w-full  left-1/2 -translate-x-1/2 max-sm:pb-[400px]  pb-[330px]   text-center flex justify-center gap-3  px-3 items-center">
+                        <div
+                            onClick={() => closeFilter()}
+                            className="absolute  max-xs:flex-col bottom-0 w-full  left-1/2 -translate-x-1/2 max-sm:pb-[400px]  pb-[330px]   text-center flex justify-center gap-3  px-3 items-center"
+                        >
                             {allProductsList.metadata.currentPage >= 3 ? (
                                 <button
                                     onClick={() => {
