@@ -64,7 +64,7 @@ export default function Products() {
                     <aside
                         className={`${
                             showFilterModal ? "translate-x-0 opacity-100" : ""
-                        } bg-white -translate-x-full opacity-0  duration-500 flex shadow-md rounded-lg flex-col gap-3 p-4 fixed top-0 bottom-0 left-0 max-xs:w-[250px] w-[350px] h-full z-50`}
+                        } bg-white -translate-x-full opacity-0  duration-500 flex shadow-2xl  rounded-r-3xl flex-col gap-3 p-4 fixed top-0 bottom-0 left-0 max-xs:w-[250px] w-[350px] h-full z-50`}
                     >
                         <header className="flex  items-center justify-between">
                             <h2 className="text-xl font-bold  uppercase">
