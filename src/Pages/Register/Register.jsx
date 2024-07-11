@@ -11,6 +11,7 @@ export default function Register() {
     const { setToken } = useContext(userContext);
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState(null);
+    const [changePasswordType, setChangePasswordType] = useState(false);
 
     function clearInputs() {
         formik.values.email = "";
@@ -169,17 +170,33 @@ export default function Register() {
                             *{formik.errors.phone}
                         </p>
                     )}
-                    <div>
+                    <div className="relative">
                         <input
                             className="form-control w-full"
                             autoComplete="off"
-                            type="password"
+                            type={`${changePasswordType ? "text" : "password"}`}
                             name="password"
                             value={formik.values.password}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                             placeholder="Enter Your Password"
                         />
+
+                        {changePasswordType ? (
+                            <i
+                                onClick={() => {
+                                    setChangePasswordType(!changePasswordType);
+                                }}
+                                className="fa-regular text-slate-400 cursor-pointer fa-eye absolute top-1/2 right-[20px] text-xs -translate-y-1/2"
+                            ></i>
+                        ) : (
+                            <i
+                                onClick={() => {
+                                    setChangePasswordType(!changePasswordType);
+                                }}
+                                className="fa-regular text-slate-400 cursor-pointer fa-eye-slash absolute top-1/2 right-[20px] text-xs -translate-y-1/2"
+                            ></i>
+                        )}
                     </div>
                     {formik.errors.password && formik.touched.password && (
                         <p className="text-red-600 font-bold text-sm -my-3">
@@ -190,7 +207,7 @@ export default function Register() {
                         <input
                             className="form-control w-full"
                             autoComplete="off"
-                            type="password"
+                            type={`${changePasswordType ? "text" : "password"}`}
                             name="rePassword"
                             value={formik.values.rePassword}
                             onChange={formik.handleChange}

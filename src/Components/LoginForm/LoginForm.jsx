@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Formik, useFormik } from "formik";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { userContext } from "../../Context/User.context";
@@ -9,6 +9,8 @@ import { Helmet } from "react-helmet";
 export default function LoginForm() {
     const { token, setToken } = useContext(userContext);
     const { setShowLoginModal } = useContext(ProductContext);
+    const [changePasswordType, setChangePasswordType] = useState(false);
+
     let navigate = useNavigate();
 
     function clearInputs() {
@@ -101,16 +103,32 @@ export default function LoginForm() {
                         />
                     </div>
 
-                    <div>
+                    <div className="relative">
                         <input
                             className="form-control w-full"
                             autoComplete="off"
-                            type="password"
+                            type={`${changePasswordType ? "text" : "password"}`}
                             name="password"
                             value={formik.values.password}
                             onChange={formik.handleChange}
                             placeholder="Enter Your Password"
                         />
+
+                        {changePasswordType ? (
+                            <i
+                                onClick={() => {
+                                    setChangePasswordType(!changePasswordType);
+                                }}
+                                className="fa-regular text-slate-400 cursor-pointer fa-eye absolute top-1/2 right-[20px] text-xs -translate-y-1/2"
+                            ></i>
+                        ) : (
+                            <i
+                                onClick={() => {
+                                    setChangePasswordType(!changePasswordType);
+                                }}
+                                className="fa-regular text-slate-400 cursor-pointer fa-eye-slash absolute top-1/2 right-[20px] text-xs -translate-y-1/2"
+                            ></i>
+                        )}
                     </div>
 
                     <div className="flex flex-col gap-4 justify-between items-center">
