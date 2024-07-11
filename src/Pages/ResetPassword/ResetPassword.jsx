@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Formik, useFormik } from "formik";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
@@ -9,6 +9,8 @@ import { Helmet } from "react-helmet";
 
 export default function ResetPassword() {
     const { setToken, token } = useContext(userContext);
+    const [changePasswordType, setChangePasswordType] = useState(false);
+
     let navigate = useNavigate();
 
     async function formSubmit(values) {
@@ -95,17 +97,33 @@ export default function ResetPassword() {
                     </p>
                 </header>
                 <form onSubmit={formik.handleSubmit}>
-                    <div className="mb-3">
+                    <div className="mb-3 relative">
                         <input
                             className="form-control w-full placeholder:text-sm"
                             autoComplete="off"
-                            type="password"
+                            type={`${changePasswordType ? "text" : "password"}`}
                             name="newPassword"
                             value={formik.values.newPassword}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                             placeholder="New Password"
                         />
+
+                        {changePasswordType ? (
+                            <i
+                                onClick={() => {
+                                    setChangePasswordType(!changePasswordType);
+                                }}
+                                className="fa-regular text-slate-400 cursor-pointer fa-eye absolute top-1/2 right-[15px] text-xs -translate-y-1/2"
+                            ></i>
+                        ) : (
+                            <i
+                                onClick={() => {
+                                    setChangePasswordType(!changePasswordType);
+                                }}
+                                className="fa-regular text-slate-400 cursor-pointer fa-eye-slash absolute top-1/2 right-[15px] text-xs -translate-y-1/2"
+                            ></i>
+                        )}
                     </div>
                     {formik.errors.newPassword &&
                         formik.touched.newPassword && (
@@ -117,7 +135,7 @@ export default function ResetPassword() {
                         <input
                             className="form-control w-full placeholder:text-sm"
                             autoComplete="off"
-                            type="password"
+                            type={`${changePasswordType ? "text" : "password"}`}
                             name="rePassword"
                             value={formik.values.rePassword}
                             onChange={formik.handleChange}

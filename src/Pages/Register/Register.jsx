@@ -187,14 +187,14 @@ export default function Register() {
                                 onClick={() => {
                                     setChangePasswordType(!changePasswordType);
                                 }}
-                                className="fa-regular text-slate-400 cursor-pointer fa-eye absolute top-1/2 right-[20px] text-xs -translate-y-1/2"
+                                className="fa-regular text-slate-400 cursor-pointer fa-eye absolute top-1/2 right-[15px] text-xs -translate-y-1/2"
                             ></i>
                         ) : (
                             <i
                                 onClick={() => {
                                     setChangePasswordType(!changePasswordType);
                                 }}
-                                className="fa-regular text-slate-400 cursor-pointer fa-eye-slash absolute top-1/2 right-[20px] text-xs -translate-y-1/2"
+                                className="fa-regular text-slate-400 cursor-pointer fa-eye-slash absolute top-1/2 right-[15px] text-xs -translate-y-1/2"
                             ></i>
                         )}
                     </div>
