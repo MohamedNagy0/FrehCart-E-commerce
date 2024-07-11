@@ -19,7 +19,6 @@ import AllOrders from "./Pages/AllOrders/AllOrders";
 import ProtectedAuth from "./Components/Protect/ProtectedAuth/ProtectedAuth";
 import ProtectedCart from "./Components/Protect/ProtectedCart/ProtectedCart";
 import ProtectedAllOrders from "./Components/Protect/ProtectedAllOrders/ProtectedAllOrders";
-import { useState } from "react";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import BrandsDetails from "./Pages/BrandsDetails/BrandsDetails";
 import WishList from "./Pages/WishList/WishList";
@@ -114,6 +113,7 @@ function App() {
             ],
         },
     ]);
+
     const myClient = new QueryClient();
     return (
         <>
