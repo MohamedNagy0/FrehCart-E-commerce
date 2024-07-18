@@ -4,7 +4,6 @@ import { useContext, useEffect, useState } from "react";
 import { userContext } from "../../Context/User.context";
 import { CartContext } from "../../Context/Cart.context";
 import { WishListContext } from "../../Context/WishList.context";
-import { BsCart4 } from "react-icons/bs";
 
 export default function Navbar() {
     const [open, setOpen] = useState(false);
@@ -100,7 +99,7 @@ export default function Navbar() {
                                 setOpen(!open);
                             }}
                         >
-                            <i className="fa-solid active:text-sm duration-150 fa-bars cursor-pointer  text-lg"></i>
+                            <i className="fa-solid  duration-150 fa-bars cursor-pointer  text-lg"></i>
                         </span>
 
                         <ul
