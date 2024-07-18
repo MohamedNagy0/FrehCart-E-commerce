@@ -26,6 +26,8 @@ import ProtectWishList from "./Components/Protect/ProtectWishList/ProtectWishLis
 import WishListProvider from "./Context/WishList.context";
 import ProductProvider from "./Context/Product.context";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Aos from "aos";
+Aos.init();
 
 function App() {
     const routes = createBrowserRouter([

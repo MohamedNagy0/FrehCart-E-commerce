@@ -37,7 +37,7 @@ export default function BrandsDetails() {
                             <img src={noProductFound} alt="noProductFound" />
                         </div>
                     ) : (
-                        <section className="wrapper grid grid-cols-12 gap-5 max-md:px-16">
+                        <section className="wrapper grid grid-cols-12 gap-5 max-md:px-16 pb-8">
                             {specificBrandProducts.map((obj) => {
                                 return (
                                     <ProductCard products={obj} key={obj.id} />

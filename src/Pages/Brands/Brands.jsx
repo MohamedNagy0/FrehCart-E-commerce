@@ -48,9 +48,11 @@ export default function Brands() {
                         ""
                     )}
 
-                    <section className="wrapper grid grid-cols-12 gap-2 px-2 pb-16 mt-4 ">
+                    <section className="wrapper grid grid-cols-12 gap-2 px-2 pb-16 mt-4">
                         {data.data.map((brand) => (
                             <Link
+                                data-aos="zoom-in-up"
+                                data-aos-duration="500"
                                 to={`/brand/${brand._id}`}
                                 key={brand._id}
                                 className="col-span-4 md:col-span-3 lg:md:col-span-2  flex items-center justify-center "
@@ -65,7 +67,7 @@ export default function Brands() {
                     </section>
 
                     {productLimitation == 30 && data.data.length != 0 ? (
-                        <div className="text-center">
+                        <div className="text-center max-xs:pb-4">
                             <button
                                 type="button"
                                 onClick={() => {
@@ -83,7 +85,7 @@ export default function Brands() {
                     )}
 
                     {productLimitation == 50 && data.data.length != 0 ? (
-                        <div className="text-center">
+                        <div className="text-center max-xs:pb-4">
                             <button
                                 type="button"
                                 onClick={() => {

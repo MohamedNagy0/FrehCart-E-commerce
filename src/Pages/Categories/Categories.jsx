@@ -23,7 +23,7 @@ export default function Categories() {
                 <h2 className="text-center border-b border-t py-2 text-primary text-lg">
                     Shop by category
                 </h2>
-                <section className="wrapper grid grid-cols-12 px-2">
+                <section className="wrapper grid grid-cols-12 px-2 pb-4">
                     {data.data.data.map((category, index) => (
                         <article
                             key={category._id}

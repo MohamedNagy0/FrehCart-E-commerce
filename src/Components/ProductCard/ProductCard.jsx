@@ -42,7 +42,11 @@ export default function ProductCard({ products }) {
 
     return (
         <>
-            <article className="productCard group  flex flex-col gap-3 col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3  shadow-md rounded-md overflow-hidden">
+            <article
+                data-aos="fade-up"
+                data-aos-duration="500"
+                className="productCard group  flex flex-col gap-3 col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3  shadow-md rounded-md overflow-hidden"
+            >
                 <header className="relative">
                     <Link to={`/product/${id}`}>
                         <img

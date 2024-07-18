@@ -45,7 +45,7 @@ export default function Home() {
                     <Title name="Products" />
                 </div>
 
-                <div className="wrapper grid grid-cols-12 gap-5 max-md:px-16">
+                <div className="wrapper grid grid-cols-12 gap-5 max-md:px-16 pb-4">
                     {data.data.data.map((obj) => {
                         return <ProductCard products={obj} key={obj.id} />;
                     })}
