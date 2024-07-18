@@ -20,8 +20,8 @@ export default function ScrollToTopButton() {
             <button
                 onClick={ScrollToTop}
                 className={`${
-                    showBackToTopButton ? "opacity-100" : "opacity-0"
-                } hover:-translate-y-2 duration-300 size-1 p-5 bg-primary flex justify-center items-center fixed  bottom-[30px] right-[5px] rounded-full `}
+                    showBackToTopButton ? "opacity-50" : "opacity-0"
+                } z-50 hover:-translate-y-2 duration-300 hover:opacity-100 size-1 p-5 rounded-full bg-primary flex justify-center items-center fixed  bottom-[30px] right-[5px] xl:right-[20px]`}
             >
                 <i className="fa-solid fa-arrow-up text-white"></i>
             </button>
