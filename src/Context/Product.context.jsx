@@ -16,6 +16,7 @@ export default function ProductProvider({ children }) {
     const [defactoBrand, setDefactoBrand] = useState("");
     const [pumaBrand, setPumaBrand] = useState("");
     const [priceSort, setPriceSort] = useState("+");
+
     const allProductsUrl = `https://ecommerce.routemisr.com/api/v1/products?page=${pageNum}&limit=10&sort=${priceSort}price&price[lte]=${range}${canonBrand}${dellBrand}${defactoBrand}${pumaBrand}${manCategory}${womanCategory}${electronicsCategory}`;
 
     async function getAllProducts() {
