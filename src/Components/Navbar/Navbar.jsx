@@ -184,9 +184,9 @@ export default function Navbar() {
                                                     <span>
                                                         <i className="fa-solid fa-gear text-sm"></i>
                                                     </span>
-                                                    <Link className="">
+                                                    <span className="">
                                                         Profile Setting
-                                                    </Link>
+                                                    </span>
                                                 </Link>
                                             </li>
                                             <li
