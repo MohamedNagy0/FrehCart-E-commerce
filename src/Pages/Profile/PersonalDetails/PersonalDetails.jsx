@@ -123,6 +123,7 @@ export default function PersonalDetails() {
                             <input
                                 type="text"
                                 id="name"
+                                name="name"
                                 value={formik.values.name}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
@@ -149,6 +150,7 @@ export default function PersonalDetails() {
                             <input
                                 type="email"
                                 id="email"
+                                name="email"
                                 value={formik.values.email}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
@@ -156,7 +158,7 @@ export default function PersonalDetails() {
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             />
                         </div>
-                        {formik.errors.name && formik.touched.email && (
+                        {formik.errors.email && formik.touched.email && (
                             <p className="text-red-600 font-bold text-xs ml-2 -mt-3 mb-2">
                                 *{formik.errors.email}
                             </p>
@@ -177,6 +179,7 @@ export default function PersonalDetails() {
                                 placeholder="Enter you new phone"
                                 type="tel"
                                 id="phone"
+                                name="phone"
                                 value={formik.values.phone}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
@@ -184,7 +187,7 @@ export default function PersonalDetails() {
                             />
                         </div>
 
-                        {formik.errors.name && formik.touched.phone && (
+                        {formik.errors.phone && formik.touched.phone && (
                             <p className="text-red-600 font-bold text-xs ml-2 -mt-3 mb-2">
                                 *{formik.errors.phone}
                             </p>

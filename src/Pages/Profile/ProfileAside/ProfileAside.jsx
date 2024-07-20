@@ -1,9 +1,12 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { userContext } from "../../../Context/User.context";
 
 export default function ProfileAside({
     profileAsideMove,
     setProfileAsideMove,
 }) {
+    const { userAddress } = useContext(userContext);
     return (
         <>
             <aside
@@ -32,6 +35,21 @@ export default function ProfileAside({
                                 <i className="fa-solid fa-lock"></i>
                             </span>{" "}
                             <span>Change Password</span>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="userAddress"
+                            className="flex items-center gap-1"
+                        >
+                            <span>
+                                <i className="fa-solid fa-address-card"></i>{" "}
+                            </span>{" "}
+                            <span>
+                                {userAddress?.length != 0
+                                    ? "Update Address"
+                                    : "Add Address"}
+                            </span>
                         </NavLink>
                     </li>
                 </ul>

@@ -14,8 +14,9 @@ export default function Navbar() {
         usersProfileData,
         getUserProfileData,
         userFakeImage,
+        getUserAddress,
     } = useContext(userContext);
-    const { getAllProductsCart, cartProducts, cartAnimation } =
+    const { getAllProductsCart, cartProducts, cartAnimation, userOrders } =
         useContext(CartContext);
     const { getProductsToWishList, wishListProducts } =
         useContext(WishListContext);
@@ -24,6 +25,7 @@ export default function Navbar() {
         if (token) {
             getAllProductsCart();
             getUserProfileData();
+            getUserAddress();
         }
     }, []);
 

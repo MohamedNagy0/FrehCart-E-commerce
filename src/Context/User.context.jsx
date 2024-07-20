@@ -9,6 +9,7 @@ export const userContext = createContext(null);
 export default function UserProvider({ children }) {
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [usersProfileData, setUsersProfileData] = useState(null);
+    const [userAddress, setUserAddress] = useState(null);
     const [userImage, setUserImage] = useState(null);
     const [loadingUserImage, setLoadingUserImage] = useState(false);
     const ImageInputRef = useRef(null);
@@ -24,6 +25,19 @@ export default function UserProvider({ children }) {
                 `https://ecommerce.routemisr.com/api/v1/users/${jwtObject.id}`
             );
             setUsersProfileData(data.data);
+        } catch (error) {}
+    }
+
+    async function getUserAddress() {
+        try {
+            const { data } = await axios.request({
+                method: "GET",
+                url: "https://ecommerce.routemisr.com/api/v1/addresses",
+                headers: {
+                    token,
+                },
+            });
+            setUserAddress(data.data);
         } catch (error) {}
     }
 
@@ -88,6 +102,8 @@ export default function UserProvider({ children }) {
                     uploadImage,
                     userImage,
                     loadingUserImage,
+                    userAddress,
+                    getUserAddress,
                 }}
             >
                 {children}

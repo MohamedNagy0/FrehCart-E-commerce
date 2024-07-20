@@ -11,11 +11,19 @@ import formatMoney from "../../Helpers/helpers";
 export default function CheckOut({ totalPrice }) {
     const navigate = useNavigate();
     const { cartProducts, setCartProducts } = useContext(CartContext);
-    const { token } = useContext(userContext);
+    const { token, userAddress } = useContext(userContext);
 
-    const [city, setCity] = useState("");
-    const [phone, setPhone] = useState("");
-    const [details, setDetails] = useState("");
+    const [city, setCity] = useState(
+        userAddress.length != 0 ? userAddress[userAddress.length - 1].name : ""
+    );
+    const [phone, setPhone] = useState(
+        userAddress.length != 0 ? userAddress[userAddress.length - 1].phone : ""
+    );
+    const [details, setDetails] = useState(
+        userAddress.length != 0
+            ? userAddress[userAddress.length - 1].details
+            : ""
+    );
 
     const [cityTouch, setCityTouch] = useState(false);
     const [phoneTouch, setPhoneTouch] = useState(false);
@@ -94,8 +102,8 @@ export default function CheckOut({ totalPrice }) {
             errors.city = "City is required";
         } else if (city.length < 3) {
             errors.city = "City must more then 3 characters";
-        } else if (city.length > 11) {
-            errors.city = "City must less then 11 characters";
+        } else if (city.length > 25) {
+            errors.city = "City must less then 25 characters";
         } else {
             errors.city = "";
         }

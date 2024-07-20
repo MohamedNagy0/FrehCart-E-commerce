@@ -35,6 +35,7 @@ import Profile from "./Pages/Profile/Profile";
 import PersonalDetails from "./Pages/Profile/PersonalDetails/PersonalDetails";
 import PasswordAndSecurity from "./Pages/Profile/PasswordAndSecurity/PasswordAndSecurity";
 import ProtectedUserProfile from "./Components/Protect/ProtectedUserProfile/ProtectedUserProfile";
+import UserAddress from "./Pages/Profile/UserAddress/UserAddress";
 Aos.init();
 
 function App() {
@@ -108,6 +109,10 @@ function App() {
                         {
                             path: "passwordAndSecurity",
                             element: <PasswordAndSecurity />,
+                        },
+                        {
+                            path: "userAddress",
+                            element: <UserAddress />,
                         },
                     ],
                 },

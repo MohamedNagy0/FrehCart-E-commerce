@@ -4,6 +4,7 @@ import Loading from "../Loading/Loading";
 import { Link } from "react-router-dom";
 import formatMoney from "../../Helpers/helpers";
 import { Helmet } from "react-helmet";
+import BackButton from "../../Components/BackButton/BackButton";
 
 export default function AllOrders() {
     const { getUserOrders, userOrders } = useContext(CartContext);
@@ -21,8 +22,42 @@ export default function AllOrders() {
                     content="Welcome to our AllOrders page! Here, you’ll find an extensive range of high-quality items carefully curated for your shopping pleasure."
                 />
             </Helmet>
-            {userOrders ? (
+            {userOrders == null ? (
+                <Loading />
+            ) : userOrders.length == 0 ? (
+                <div className=" flex  flex-col justify-center items-center">
+                    <header className="flex  justify-center items-center self-start gap-6">
+                        <BackButton />
+                        <h2 className="flex items-center gap-2">
+                            <span className="text-2xl font-bold">
+                                Track your orders
+                            </span>
+                            <i className="fa-solid fa-truck-fast  text-primary text-2xl"></i>
+                        </h2>
+                    </header>
+
+                    <footer className="p-5 m-16 flex flex-col justify-center items-center gap-2 text-center">
+                        <p className="text-nowrap">There are not orders yet.</p>
+                        <Link
+                            to="/products"
+                            className="btn-primary text-nowrap "
+                        >
+                            Add your first order
+                        </Link>
+                    </footer>
+                </div>
+            ) : (
                 <section className=" flex flex-col gap-8">
+                    <header className="flex  justify-center items-center self-start gap-6">
+                        <BackButton />
+                        <h2 className="flex items-center gap-2">
+                            <span className="text-2xl font-bold">
+                                Track your orders
+                            </span>
+                            <i className="fa-solid fa-truck-fast  text-primary text-2xl"></i>
+                        </h2>
+                    </header>
+
                     {userOrders.map((order) => (
                         <div
                             key={order.id}
@@ -263,8 +298,6 @@ export default function AllOrders() {
                         </div>
                     ))}
                 </section>
-            ) : (
-                <Loading />
             )}
         </>
     );
