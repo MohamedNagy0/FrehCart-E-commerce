@@ -67,7 +67,7 @@ export default function CheckOut({ totalPrice }) {
         try {
             const options = {
                 method: "POST",
-                url: `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartProducts.data._id}?url=http://localhost:5174`,
+                url: `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartProducts.data._id}?url=https://e-commerce-orpin-rho.vercel.app/`,
                 data: {
                     shippingAddress: {
                         details,
