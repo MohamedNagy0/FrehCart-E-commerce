@@ -16,7 +16,7 @@ export default function Navbar() {
         userFakeImage,
         getUserAddress,
     } = useContext(userContext);
-    const { getAllProductsCart, cartProducts, cartAnimation, userOrders } =
+    const { getAllProductsCart, cartProducts, cartAnimation } =
         useContext(CartContext);
     const { getProductsToWishList, wishListProducts } =
         useContext(WishListContext);
