@@ -82,7 +82,7 @@ export default function Cart() {
                                     There are not items yet.
                                 </p>
                                 <Link
-                                    to="/"
+                                    to="/products"
                                     className="btn-primary text-nowrap "
                                 >
                                     Add your first product to cart

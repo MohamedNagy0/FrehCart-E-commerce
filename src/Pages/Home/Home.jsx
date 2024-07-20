@@ -42,7 +42,7 @@ export default function Home() {
                 <CategorySilder />
 
                 <div id="products-section">
-                    <Title name="Products" />
+                    <Title name="Shope now by popular products" />
                 </div>
 
                 <div className="wrapper grid grid-cols-12 gap-5 max-md:px-16 pb-4">
