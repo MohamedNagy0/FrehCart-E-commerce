@@ -8,7 +8,8 @@ import { userContext } from "../../../Context/User.context";
 import ImportUserImage from "./ImportUserImage/ImportUserImage";
 
 export default function PersonalDetails() {
-    const { usersProfileData, token } = useContext(userContext);
+    const { usersProfileData, token, getUserProfileData } =
+        useContext(userContext);
 
     function clearInputs() {
         formik.values.name = "";
@@ -45,6 +46,7 @@ export default function PersonalDetails() {
 
             toast.dismiss(toastId);
             if (data.message == "success") {
+                getUserProfileData();
                 toast(
                     <span className="text-darkPrimary ">
                         Information's Changed Successfully
