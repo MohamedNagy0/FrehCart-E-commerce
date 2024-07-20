@@ -48,11 +48,29 @@ export default {
                     "75%": { transform: "translateY(-7px)" },
                     "100%": { transform: "translateY(0)" },
                 },
+                userAsideAnimation: {
+                    "0%": {
+                        transform: "translateX(-100%)",
+                    },
+                    "25%": {
+                        transform: "translateX(-60%)",
+                    },
+                    "50%": {
+                        transform: "translateX(-40%)",
+                    },
+                    "75%": {
+                        transform: "translateX(25px)",
+                    },
+                    "100%": {
+                        transform: "translateX(-100%)",
+                    },
+                },
             },
             animation: {
                 shake: "shake 300ms linear infinite forwards",
                 cart: "cart 1s linear",
                 pulse: "pulse 500ms cubic-bezier(0.4, 0, 0.6, 1) infinite",
+                userAsideAnimation: "userAsideAnimation 1.5s linear",
             },
         },
     },

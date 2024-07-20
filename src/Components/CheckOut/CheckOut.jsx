@@ -67,7 +67,7 @@ export default function CheckOut({ totalPrice }) {
         try {
             const options = {
                 method: "POST",
-                url: `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartProducts.data._id}?url=https://e-commerce-orpin-rho.vercel.app/`,
+                url: `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartProducts.data._id}?url=http://localhost:5174`,
                 data: {
                     shippingAddress: {
                         details,
@@ -82,6 +82,7 @@ export default function CheckOut({ totalPrice }) {
             toastId = toast.loading("Waiting...");
 
             const { data } = await axios.request(options);
+            console.log(data);
             toast.dismiss(toastId);
             if (data.status == "success") {
                 window.location.href = data.session.url;

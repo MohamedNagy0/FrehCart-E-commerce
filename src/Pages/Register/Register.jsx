@@ -6,12 +6,12 @@ import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { userContext } from "../../Context/User.context";
 import { Helmet } from "react-helmet";
+import useChangePasswordType from "../../Hooks/useChangePasswordType";
 
 export default function Register() {
     const { setToken } = useContext(userContext);
     const navigate = useNavigate();
-    const [errorMessage, setErrorMessage] = useState(null);
-    const [changePasswordType, setChangePasswordType] = useState(false);
+    let { changePasswordType, setChangePasswordType } = useChangePasswordType();
 
     function clearInputs() {
         formik.values.email = "";
@@ -65,15 +65,14 @@ export default function Register() {
             changeTouchedValue();
             toast.dismiss(toastId);
             toast.error(error.response.data.message);
-            setErrorMessage(error.response.data.message);
         }
     }
 
     const formValidation = Yup.object({
         name: Yup.string()
             .required("name is required")
-            .min(3, "name must more then 3 characters")
-            .max(10, "name must less then 11 characters"),
+            .min(3, "name must be more then 3 characters")
+            .max(25, "name must be less then 25 characters"),
         email: Yup.string()
             .required("email is required")
             .email("email is invalid"),
@@ -83,10 +82,10 @@ export default function Register() {
         password: Yup.string()
             .required("password is required")
             .min(6, "password must be 6 characters")
-            .max(6, "password must be 6 characters"),
+            .max(8, "password must be less then 8 characters"),
         rePassword: Yup.string()
             .required("Re-Password is required")
-            .oneOf([Yup.ref("password")], "Re-Password is invalid"),
+            .oneOf([Yup.ref("password")], "Confirm Password is invalid"),
     });
 
     const formik = useFormik({

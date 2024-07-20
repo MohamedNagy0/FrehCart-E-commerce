@@ -6,10 +6,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { userContext } from "../../Context/User.context";
 import { ProductContext } from "../../Context/Product.context";
 import { Helmet } from "react-helmet";
+import useChangePasswordType from "../../Hooks/useChangePasswordType";
 export default function LoginForm() {
     const { token, setToken } = useContext(userContext);
     const { setShowLoginModal } = useContext(ProductContext);
-    const [changePasswordType, setChangePasswordType] = useState(false);
+    let { changePasswordType, setChangePasswordType } = useChangePasswordType();
 
     let navigate = useNavigate();
 
@@ -106,7 +107,6 @@ export default function LoginForm() {
                     <div className="relative">
                         <input
                             className="form-control w-full"
-                            autoComplete="off"
                             type={`${changePasswordType ? "text" : "password"}`}
                             name="password"
                             value={formik.values.password}

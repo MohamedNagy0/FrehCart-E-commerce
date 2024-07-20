@@ -1,4 +1,8 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+    Navigate,
+    RouterProvider,
+    createBrowserRouter,
+} from "react-router-dom";
 import Layout from "./Components/Layout/Layout";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
@@ -27,6 +31,10 @@ import WishListProvider from "./Context/WishList.context";
 import ProductProvider from "./Context/Product.context";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Aos from "aos";
+import Profile from "./Pages/Profile/Profile";
+import PersonalDetails from "./Pages/Profile/PersonalDetails/PersonalDetails";
+import PasswordAndSecurity from "./Pages/Profile/PasswordAndSecurity/PasswordAndSecurity";
+import ProtectedUserProfile from "./Components/Protect/ProtectedUserProfile/ProtectedUserProfile";
 Aos.init();
 
 function App() {
@@ -80,9 +88,32 @@ function App() {
                     path: "*",
                     element: <NotFound />,
                 },
-                "details",
+
+                {
+                    path: "/profile",
+                    element: (
+                        <ProtectedUserProfile>
+                            <Profile />
+                        </ProtectedUserProfile>
+                    ),
+                    children: [
+                        {
+                            index: true,
+                            element: <Navigate replace to="personalDetails" />,
+                        },
+                        {
+                            path: "personalDetails",
+                            element: <PersonalDetails />,
+                        },
+                        {
+                            path: "passwordAndSecurity",
+                            element: <PasswordAndSecurity />,
+                        },
+                    ],
+                },
             ],
         },
+
         {
             path: "/auth",
             element: (

@@ -1,6 +1,3 @@
 .nav :global(.nav-links) li a {
     transition: color 350ms;
 }
-.nav :global(.nav-links) li a:hover {
-    color: #09c;
-}

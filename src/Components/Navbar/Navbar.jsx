@@ -7,7 +7,14 @@ import { WishListContext } from "../../Context/WishList.context";
 
 export default function Navbar() {
     const [open, setOpen] = useState(false);
-    const { token, logOut } = useContext(userContext);
+    const [showProfileUser, setShowProfileUser] = useState(false);
+    const {
+        token,
+        logOut,
+        usersProfileData,
+        getUserProfileData,
+        userFakeImage,
+    } = useContext(userContext);
     const { getAllProductsCart, cartProducts, cartAnimation } =
         useContext(CartContext);
     const { getProductsToWishList, wishListProducts } =
@@ -16,6 +23,7 @@ export default function Navbar() {
     useEffect(() => {
         if (token) {
             getAllProductsCart();
+            getUserProfileData();
         }
     }, []);
 
@@ -102,6 +110,100 @@ export default function Navbar() {
                             <i className="fa-solid  duration-150 fa-bars cursor-pointer  text-lg"></i>
                         </span>
 
+                        {token ? (
+                            <div
+                                className="profileUl cursor-pointer order-0 md-850:order-6 shrink-0 flex items-center justify-center"
+                                onClick={() => {
+                                    setShowProfileUser(!showProfileUser);
+                                }}
+                            >
+                                <div className="inline-block relative text-darkPrimary font-bold cursor-pointer">
+                                    <span className="flex items-center gap-1">
+                                        <div className="size-8 border-2 border-green-600 rounded-full">
+                                            {localStorage.getItem(
+                                                "userImage"
+                                            ) ? (
+                                                <img
+                                                    className="w-full h-full object-contain rounded-full"
+                                                    src={`${localStorage.getItem(
+                                                        "userImage"
+                                                    )}`}
+                                                    alt=""
+                                                />
+                                            ) : (
+                                                <img
+                                                    className="w-full rounded-full"
+                                                    src={userFakeImage}
+                                                    alt=""
+                                                />
+                                            )}
+                                        </div>
+                                    </span>
+
+                                    {showProfileUser ? (
+                                        <ul className="absolute top-[35px] right-full -me-4 bg-white w-[280px] shadow-2xl p-3  flex flex-col justify-center items-start rounded-2xl">
+                                            <li className="cursor-default pb-0 px-1 flex w-full items-center gap-2 text-sm after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-[90%] after:bg-slate-200 after:h-[2px] relative">
+                                                <div className="size-12 border rounded-full">
+                                                    {localStorage.getItem(
+                                                        "userImage"
+                                                    ) ? (
+                                                        <img
+                                                            className="w-full h-full object-contain rounded-full"
+                                                            src={`${localStorage.getItem(
+                                                                "userImage"
+                                                            )}`}
+                                                            alt=""
+                                                        />
+                                                    ) : (
+                                                        <img
+                                                            className="w-full rounded-full"
+                                                            src={userFakeImage}
+                                                            alt=""
+                                                        />
+                                                    )}
+                                                </div>
+
+                                                <div className="flex flex-col justify-start">
+                                                    <span>
+                                                        {usersProfileData?.name}
+                                                    </span>
+                                                    <span className="text-slate-400 font-normal">
+                                                        {
+                                                            usersProfileData?.email
+                                                        }
+                                                    </span>
+                                                </div>
+                                            </li>
+                                            <li className="px-3 mt-3 hover:bg-slate-100 rounded-xl py-1 duration-200 w-full flex">
+                                                <div className="flex justify-center gap-2 ">
+                                                    <span>
+                                                        <i className="fa-solid fa-gear text-sm"></i>
+                                                    </span>
+                                                    <Link to="profile">
+                                                        Profile Setting
+                                                    </Link>
+                                                </div>
+                                            </li>
+                                            <li
+                                                onClick={logOut}
+                                                className="px-3 flex items-center gap-2 w-full  hover:bg-slate-100 rounded-xl py-1"
+                                            >
+                                                <i
+                                                    className="fa-solid rotate-180 fa-arrow-right-from-bracket text-red-500 text-sm"
+                                                    title="Log out"
+                                                ></i>
+                                                <span>Log out</span>
+                                            </li>
+                                        </ul>
+                                    ) : (
+                                        ""
+                                    )}
+                                </div>
+                            </div>
+                        ) : (
+                            ""
+                        )}
+
                         <ul
                             className={`${
                                 open ? "flex" : "hidden"
@@ -112,28 +214,45 @@ export default function Navbar() {
                                     setOpen(false);
                                 }}
                             >
-                                <NavLink to="/">Home</NavLink>
+                                <NavLink className="hover:text-primary" to="/">
+                                    Home
+                                </NavLink>
                             </li>
                             <li
                                 onClick={() => {
                                     setOpen(false);
                                 }}
                             >
-                                <NavLink to="products">Products</NavLink>
+                                <NavLink
+                                    className="hover:text-primary"
+                                    to="products"
+                                >
+                                    Products
+                                </NavLink>
                             </li>
                             <li
                                 onClick={() => {
                                     setOpen(false);
                                 }}
                             >
-                                <NavLink to="categories">Categories</NavLink>
+                                <NavLink
+                                    className="hover:text-primary"
+                                    to="categories"
+                                >
+                                    Categories
+                                </NavLink>
                             </li>
                             <li
                                 onClick={() => {
                                     setOpen(false);
                                 }}
                             >
-                                <NavLink to="brands">Brands</NavLink>
+                                <NavLink
+                                    className="hover:text-primary"
+                                    to="brands"
+                                >
+                                    Brands
+                                </NavLink>
                             </li>
 
                             {token ? (
@@ -142,7 +261,12 @@ export default function Navbar() {
                                         setOpen(false);
                                     }}
                                 >
-                                    <NavLink to="allorders">Orders</NavLink>
+                                    <NavLink
+                                        className="hover:text-primary"
+                                        to="allorders"
+                                    >
+                                        Orders
+                                    </NavLink>
                                 </li>
                             ) : (
                                 ""
@@ -210,15 +334,7 @@ export default function Navbar() {
                                     </li>
                                 </>
                             ) : (
-                                <li onClick={logOut}>
-                                    <i
-                                        className="max-lg:block hidden fa-solid fa-arrow-right-from-bracket text-red-500 text-lg cursor-pointer"
-                                        title="Log out"
-                                    ></i>
-                                    <span className="text-red-500 hidden lg:block text-base cursor-pointer font-semibold">
-                                        Log out
-                                    </span>
-                                </li>
+                                ""
                             )}
                         </ul>
                     </div>

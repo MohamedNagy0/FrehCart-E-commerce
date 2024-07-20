@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export const CartContext = createContext("");
 
 export default function CartProvider({ children }) {
-    const { token } = useContext(userContext);
+    const { token, jwtObject } = useContext(userContext);
     const [cartProducts, setCartProducts] = useState(null);
     const [userOrders, setUserOrders] = useState(null);
     const [cartAnimation, setCartAnimation] = useState(false);
@@ -71,17 +71,12 @@ export default function CartProvider({ children }) {
     }
 
     async function getUserOrders() {
-        let jwtObject = {};
-        if (token) {
-            jwtObject = jwtDecode(token);
-        }
         try {
             const options = {
                 url: `https://ecommerce.routemisr.com/api/v1/orders/user/${jwtObject.id}`,
                 method: "GET",
             };
             const { data } = await axios.request(options);
-
             setUserOrders(data);
         } catch (error) {}
     }

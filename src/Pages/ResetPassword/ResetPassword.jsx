@@ -6,10 +6,11 @@ import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { userContext } from "../../Context/User.context";
 import { Helmet } from "react-helmet";
+import useChangePasswordType from "../../Hooks/useChangePasswordType";
 
 export default function ResetPassword() {
     const { setToken, token } = useContext(userContext);
-    const [changePasswordType, setChangePasswordType] = useState(false);
+    let { changePasswordType, setChangePasswordType } = useChangePasswordType();
 
     let navigate = useNavigate();
 
