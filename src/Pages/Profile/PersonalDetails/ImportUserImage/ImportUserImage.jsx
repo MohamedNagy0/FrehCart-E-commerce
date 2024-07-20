@@ -16,18 +16,16 @@ export default function ImportUserImage() {
                 className="flex flex-col items-center gap-2 mt-10 cursor-pointer"
             >
                 <div className="size-52 border rounded-full">
-                    {localStorage.getItem("userImage") ? (
-                        loadingUserImage ? (
-                            <div className="size-full flex justify-center items-center">
-                                <i className="fa-solid fa-circle-notch fa-spin text-primary text-4xl"></i>
-                            </div>
-                        ) : (
-                            <img
-                                className="size-full object-contain rounded-full"
-                                src={localStorage.getItem("userImage")}
-                                alt="User Profile Image"
-                            />
-                        )
+                    {loadingUserImage ? (
+                        <div className="size-full flex justify-center items-center">
+                            <i className="fa-solid fa-circle-notch fa-spin text-primary text-4xl"></i>
+                        </div>
+                    ) : localStorage.getItem("userImage") ? (
+                        <img
+                            className="size-full object-contain rounded-full"
+                            src={localStorage.getItem("userImage")}
+                            alt="User Profile Image"
+                        />
                     ) : (
                         <img
                             className="size-full object-contain rounded-full"
@@ -35,6 +33,7 @@ export default function ImportUserImage() {
                             alt="User Fake Image"
                         />
                     )}
+                    {}
 
                     <input
                         accept="image/*"
