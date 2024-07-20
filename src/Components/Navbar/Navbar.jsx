@@ -124,17 +124,17 @@ export default function Navbar() {
                                                 "userImage"
                                             ) ? (
                                                 <img
-                                                    className="w-full h-full object-contain rounded-full"
-                                                    src={`${localStorage.getItem(
+                                                    className="size-full object-contain rounded-full"
+                                                    src={localStorage.getItem(
                                                         "userImage"
-                                                    )}`}
-                                                    alt=""
+                                                    )}
+                                                    alt="User Profile Image"
                                                 />
                                             ) : (
                                                 <img
-                                                    className="w-full rounded-full"
+                                                    className="size-full object-contain rounded-full"
                                                     src={userFakeImage}
-                                                    alt=""
+                                                    alt="User Fake Image"
                                                 />
                                             )}
                                         </div>
@@ -148,17 +148,17 @@ export default function Navbar() {
                                                         "userImage"
                                                     ) ? (
                                                         <img
-                                                            className="w-full h-full object-contain rounded-full"
-                                                            src={`${localStorage.getItem(
+                                                            className="size-full object-contain rounded-full"
+                                                            src={localStorage.getItem(
                                                                 "userImage"
-                                                            )}`}
-                                                            alt=""
+                                                            )}
+                                                            alt="User Profile Image"
                                                         />
                                                     ) : (
                                                         <img
-                                                            className="w-full rounded-full"
+                                                            className="size-full object-contain rounded-full"
                                                             src={userFakeImage}
-                                                            alt=""
+                                                            alt="User Fake Image"
                                                         />
                                                     )}
                                                 </div>

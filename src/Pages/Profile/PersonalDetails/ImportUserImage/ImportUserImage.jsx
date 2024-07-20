@@ -4,31 +4,38 @@ import { userContext } from "../../../../Context/User.context";
 export default function ImportUserImage() {
     const {
         ImageInputRef,
-        handelImageChange,
         handelImageInputClick,
         userFakeImage,
-        fileType,
+        uploadImage,
+        loadingUserImage,
     } = useContext(userContext);
     return (
         <>
             <section
                 onClick={handelImageInputClick}
-                className="flex flex-col items-center gap-2 mt-10"
+                className="flex flex-col items-center gap-2 mt-10 cursor-pointer"
             >
-                <div className="size-52 border rounded-full ">
+                <div className="size-52 border rounded-full">
                     {localStorage.getItem("userImage") ? (
-                        <img
-                            className="w-full h-full object-contain rounded-full"
-                            src={`${localStorage.getItem("userImage")}`}
-                            alt=""
-                        />
+                        loadingUserImage ? (
+                            <div className="size-full flex justify-center items-center">
+                                <i className="fa-solid fa-circle-notch fa-spin text-primary text-4xl"></i>
+                            </div>
+                        ) : (
+                            <img
+                                className="size-full object-contain rounded-full"
+                                src={localStorage.getItem("userImage")}
+                                alt="User Profile Image"
+                            />
+                        )
                     ) : (
                         <img
-                            className="w-full rounded-full"
+                            className="size-full object-contain rounded-full"
                             src={userFakeImage}
-                            alt=""
+                            alt="User Fake Image"
                         />
                     )}
+
                     <input
                         accept="image/*"
                         ref={ImageInputRef}
@@ -36,7 +43,7 @@ export default function ImportUserImage() {
                         type="file"
                         placeholder="Upload Photo"
                         onChange={(e) => {
-                            handelImageChange(e);
+                            uploadImage(e.target.files[0]);
                         }}
                     />
                 </div>
@@ -44,7 +51,7 @@ export default function ImportUserImage() {
                     type="button"
                     className="btn-primary bg-white border-[1px] border-primary hover:text-white text-primary duration-300"
                 >
-                    Change Photo
+                    Upload Photo
                 </button>
             </section>
         </>

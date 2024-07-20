@@ -7,7 +7,6 @@ import { CartContext } from "../../Context/Cart.context";
 import { userContext } from "../../Context/User.context";
 import { Navigate, useNavigate } from "react-router-dom";
 import formatMoney from "../../Helpers/helpers";
-import { Helmet } from "react-helmet";
 
 export default function CheckOut({ totalPrice }) {
     const navigate = useNavigate();

@@ -9,8 +9,8 @@ export const userContext = createContext(null);
 export default function UserProvider({ children }) {
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [usersProfileData, setUsersProfileData] = useState(null);
-    const [userImage, setUserImage] = useState("");
-    const [fileType, setFileType] = useState("");
+    const [userImage, setUserImage] = useState(null);
+    const [loadingUserImage, setLoadingUserImage] = useState(false);
     const ImageInputRef = useRef(null);
     let jwtObject = {};
 
@@ -27,17 +27,29 @@ export default function UserProvider({ children }) {
         } catch (error) {}
     }
 
-    const handelImageChange = (e) => {
-        const file = e.target.files[0];
-        if (file && file.type.split("/")[0] == "image") {
-            const image = URL.createObjectURL(file);
-            setUserImage(image);
-            localStorage.setItem("userImage", image);
-        }
-    };
-
     const handelImageInputClick = () => {
         ImageInputRef.current.click();
+    };
+
+    const uploadImage = async (files) => {
+        const formData = new FormData();
+        formData.append("file", files);
+        formData.append("upload_preset", "ab2w3e89");
+
+        try {
+            setLoadingUserImage(true);
+            const { data } = await axios.post(
+                "https://api.cloudinary.com/v1_1/dlyzecljk/image/upload",
+                formData
+            );
+            setLoadingUserImage(false);
+
+            setUserImage(data.url);
+            localStorage.setItem("userImage", data.url);
+            console.log(data.url);
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     function logOut() {
@@ -46,7 +58,7 @@ export default function UserProvider({ children }) {
         localStorage.removeItem("token");
         setTimeout(() => {
             toast.dismiss(toastId);
-            window.location.href = "https://e-commerce-orpin-rho.vercel.app/";
+            window.location.href = "http://localhost:5177/";
             setToken(null);
             toast(<span className="text-darkPrimary ">Logged out</span>, {
                 duration: 2000,
@@ -71,10 +83,11 @@ export default function UserProvider({ children }) {
                     getUserProfileData,
                     usersProfileData,
                     ImageInputRef,
-                    handelImageChange,
                     handelImageInputClick,
                     userFakeImage,
-                    fileType,
+                    uploadImage,
+                    userImage,
+                    loadingUserImage,
                 }}
             >
                 {children}
