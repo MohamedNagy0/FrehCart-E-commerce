@@ -177,14 +177,17 @@ export default function Navbar() {
                                                 </div>
                                             </li>
                                             <li className="px-3 mt-3 hover:bg-slate-100 rounded-xl py-1 duration-200 w-full flex">
-                                                <div className="flex justify-center gap-2 ">
+                                                <Link
+                                                    to="profile"
+                                                    className="flex justify-start gap-2  w-full "
+                                                >
                                                     <span>
                                                         <i className="fa-solid fa-gear text-sm"></i>
                                                     </span>
-                                                    <Link to="profile">
+                                                    <Link className="">
                                                         Profile Setting
                                                     </Link>
-                                                </div>
+                                                </Link>
                                             </li>
                                             <li
                                                 onClick={logOut}
